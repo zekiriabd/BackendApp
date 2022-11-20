@@ -41,9 +41,16 @@ namespace BackendApp.Controllers
         }
         
         [HttpPut]
-        public void InsertPoint([FromBody] PointModel point)
+        public async Task<IActionResult> InsertPoint([FromBody] PointModel point)
         {
-            _PointService.InsertPoint(point);
+            if (point == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(await _PointService.InsertPoint(point));
+            }
         }
     }
 }

@@ -8,6 +8,6 @@ namespace BackendApp.Services.Interfaces
         Task<PointModel> GetPointById(int Id);
         Task UpdatePoint(PointModel point);
         Task<bool> DeletePoint(int Id);
-        Task InsertPoint(PointModel point);
+        Task<bool> InsertPoint(PointModel point);
     }
 }

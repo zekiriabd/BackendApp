@@ -70,11 +70,19 @@ namespace BackendApp.Services
             }
         }
 
-        public async Task InsertPoint(PointModel point)
+        public async Task<bool> InsertPoint(PointModel point)
         {
-            PointTb pointTb = _Mapper.Map<PointTb>(point);
-            await _Db.PointTbs.AddAsync(pointTb);
-            await _Db.SaveChangesAsync();
+            try
+            {
+                PointTb pointTb = _Mapper.Map<PointTb>(point);
+                await _Db.PointTbs.AddAsync(pointTb);
+                await _Db.SaveChangesAsync();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
